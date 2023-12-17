@@ -29,9 +29,76 @@
 -- ******************************************************************************
 library ieee;
 use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
 
 package basic is
-    
+
     type array_of_std_logic_vector is array (natural range <>) of std_logic_vector;
 
+    type array_of_signed is array (natural range <>) of signed;
+
+    type array_of_unsigned is array (natural range <>) of unsigned;
+
+    function array_element_counter_length(arg : std_logic_vector) return natural;
+
+    function array_element_counter_length(arg : signed) return natural;
+
+    function array_element_counter_length(arg : unsigned) return natural;
+    
+    function array_element_counter_length(arg : array_of_std_logic_vector) return natural;
+
+    function array_element_counter_length(arg : array_of_signed) return natural;
+
+    function array_element_counter_length(arg : array_of_unsigned) return natural;
+
+
 end package;
+
+
+package body basic is
+
+    function get_num_bits (arg : natural) return natural is
+        variable nbits : natural;
+        variable n : natural;
+    begin
+        n := arg;
+        nbits := 1;
+        while n > 1 loop
+            nbits := nbits+1;
+            n := n / 2;
+        end loop;
+        return nbits;
+    end function;
+
+    function array_element_counter_length(arg : std_logic_vector) return natural is
+    begin
+        return get_num_bits(arg'length);
+    end function;
+
+    function array_element_counter_length(arg : signed) return natural is
+    begin
+        return get_num_bits(arg'length);
+    end function;
+    
+    function array_element_counter_length(arg : unsigned) return natural is
+    begin
+        return get_num_bits(arg'length);
+    end function;
+    
+    function array_element_counter_length(arg : array_of_std_logic_vector) return natural is
+    begin
+        return get_num_bits(arg'length);
+    end function;
+
+    function array_element_counter_length(arg : array_of_signed) return natural is
+    begin
+        return get_num_bits(arg'length);
+    end function;
+    
+    function array_element_counter_length(arg : array_of_unsigned) return natural is
+    begin
+        return get_num_bits(arg'length);
+    end function;
+
+
+end package body;
