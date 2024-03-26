@@ -38,6 +38,8 @@ package basic is
     type array_of_signed is array (natural range <>) of signed;
 
     type array_of_unsigned is array (natural range <>) of unsigned;
+    
+    function get_num_bits (arg : natural) return natural;
 
     function array_element_counter_length(arg : std_logic_vector) return natural;
 
